@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace RestWithASPNET10Jorge.Model.Context;
+namespace RestWithASPNET9Jorge.Model.Context;
 
 public class MSSQLContext : DbContext
 {

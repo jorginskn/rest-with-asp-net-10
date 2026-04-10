@@ -1,6 +1,6 @@
-﻿using RestWithASPNET10Jorge.Model;
+﻿using RestWithASPNET9Jorge.Model;
 
-namespace RestWithASPNET10Jorge.Interfaces;
+namespace RestWithASPNET9Jorge.Interfaces;
 
 public interface IPersonService
 {

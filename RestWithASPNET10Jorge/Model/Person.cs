@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace RestWithASPNET10Jorge.Model;
+namespace RestWithASPNET9Jorge.Model;
 
 [Table("person")]
 public class Person
@@ -9,7 +9,7 @@ public class Person
     [Key]
     [Column("id")]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Id { get;  set; }
+    public long Id { get;  set; }
 
     [Required(ErrorMessage = "Primeiro nome é obrigatório")]
     [Column("first_name", TypeName = "varchar(80)")]

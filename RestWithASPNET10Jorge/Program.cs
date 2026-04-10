@@ -1,15 +1,22 @@
-using RestWithASPNET10Jorge.Configurations;
-using RestWithASPNET10Jorge.Interfaces;
-using RestWithASPNET10Jorge.Services;
+using RestWithASPNET9Jorge.Configurations;
+using RestWithASPNET9Jorge.Interfaces;
+using RestWithASPNET9Jorge.Services;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+    });
+
 builder.Services.AddControllers();
 builder.Services.AddScoped<IPersonService, PersonService>();
 builder.Services.AddDatabaseConfiguration(builder.Configuration);
-
+builder.AddSeriloggerConfiguration();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

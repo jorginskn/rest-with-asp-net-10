@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RestWithASPNET10Jorge.Model.Context;
+using RestWithASPNET9Jorge.Model.Context;
 
-namespace RestWithASPNET10Jorge.Configurations;
+namespace RestWithASPNET9Jorge.Configurations;
 
 public static class DatabaseConfig
 {

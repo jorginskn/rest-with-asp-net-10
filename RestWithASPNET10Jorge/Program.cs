@@ -7,6 +7,7 @@ using System.Text.Json;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.AddSeriloggerConfiguration();
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
@@ -16,8 +17,10 @@ builder.Services.AddControllers()
 
 builder.Services.AddScoped<IPersonService, PersonService>();
 builder.Services.AddScoped<IPersonRepository, PersonRepository>();
+builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddDatabaseConfiguration(builder.Configuration);
-builder.AddSeriloggerConfiguration();
+builder.Services.AddEvolveConfiguration(builder.Configuration, builder.Environment);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

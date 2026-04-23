@@ -1,16 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using RestWithASPNET9Jorge.Model.Base;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RestWithASPNET9Jorge.Model;
 
 [Table("person")]
-public class Person
+public class Person : BaseEntity
 {
-    [Key]
-    [Column("id")]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public long Id { get;  set; }
-
     [Required(ErrorMessage = "Primeiro nome é obrigatório")]
     [Column("first_name", TypeName = "varchar(80)")]
     [MaxLength(80, ErrorMessage = "O primeiro nome deve conter no máximo 80 caracteres")]

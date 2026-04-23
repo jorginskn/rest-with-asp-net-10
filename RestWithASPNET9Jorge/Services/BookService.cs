@@ -6,9 +6,9 @@ namespace RestWithASPNET9Jorge.Services;
 
 public class BookService : IBookService
 {
-    private readonly IBookRepository _repository;
+    private readonly IRepository<Book> _repository;
 
-    public BookService(IBookRepository repository)
+    public BookService(IRepository<Book> repository)
     {
         _repository = repository;
     }

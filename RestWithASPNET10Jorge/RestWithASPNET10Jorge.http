@@ -1,6 +1,0 @@
-@RestWithASPNET10Jorge_HostAddress = http://localhost:5031
-
-GET {{RestWithASPNET10Jorge_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

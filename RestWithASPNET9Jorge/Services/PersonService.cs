@@ -1,4 +1,6 @@
-﻿using RestWithASPNET9Jorge.Interfaces;
+﻿using RestWithASPNET9Jorge.Data.Converter.Contract;
+using RestWithASPNET9Jorge.Data.DTO;
+using RestWithASPNET9Jorge.Interfaces;
 using RestWithASPNET9Jorge.Model;
 using RestWithASPNET9Jorge.Repositories;
 
@@ -7,25 +9,28 @@ namespace RestWithASPNET9Jorge.Services;
 public class PersonService : IPersonService
 {
     private readonly IRepository<Person> _repository;
+    private readonly PersonConverter _converter;
     public PersonService(IRepository<Person> repository)
     {
         _repository = repository;
+        _converter = new PersonConverter();
     }
-    public List<Person> FindAll()
+    public List<PersonDTO> FindAll()
     {
-        var persons = _repository.FindAll();
+        var persons = _converter.ParseList(_repository.FindAll());
         return persons;
     }
-    public Person FindById(long id)
+    public PersonDTO FindById(long id)
     {
-        var person = _repository.FindById(id);
+        var person = _converter.Parse(_repository.FindById(id));
         return person;
     }
 
-    public Person Create(Person person)
+    public PersonDTO Create(PersonDTO person)
     {
-       var createdPerson = _repository.Create(person);
-        return createdPerson;
+        var entity = _converter.Parse(person);
+        entity = _repository.Create(entity);
+        return _converter.Parse(entity);
     }
 
     public void Delete(long id)
@@ -41,7 +46,7 @@ public class PersonService : IPersonService
             else
             {
                 _repository.Delete(id);
-                return ;
+                return;
             }
         }
         catch (Exception)
@@ -52,7 +57,7 @@ public class PersonService : IPersonService
 
     }
 
-    public Person Update(Person person)
+    public PersonDTO Update(PersonDTO person)
     {
         try
         {
@@ -63,8 +68,9 @@ public class PersonService : IPersonService
             }
             else
             {
-                 _repository.Update(person);
-                return person;
+                var entity = _converter.Parse(person);
+                entity = _repository.Update(entity);
+                return _converter.Parse(entity);
             }
 
         }
@@ -73,8 +79,8 @@ public class PersonService : IPersonService
 
             throw;
         }
-        
-     }
 
- 
+    }
+
+
 }

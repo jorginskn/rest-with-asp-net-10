@@ -1,12 +1,12 @@
-﻿using RestWithASPNET9Jorge.Model;
+﻿using RestWithASPNET9Jorge.Data.DTO;
 
 namespace RestWithASPNET9Jorge.Interfaces;
 
 public interface IPersonService
 {
-    Person Create(Person person);
-    Person FindById(long id);
-    List<Person> FindAll();
-    Person Update(Person person);
+    PersonDTO Create(PersonDTO PersonDTO);
+    PersonDTO FindById(long id);
+    List<PersonDTO> FindAll();
+    PersonDTO Update(PersonDTO PersonDTO);
     void Delete(long id);
 }

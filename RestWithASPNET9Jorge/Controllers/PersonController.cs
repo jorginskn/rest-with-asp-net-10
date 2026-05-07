@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RestWithASPNET9Jorge.Interfaces;
 using RestWithASPNET9Jorge.Model;
+using RestWithASPNET9Jorge.Data.Converter.Contract;
 
 namespace RestWithASPNET9Jorge.Controllers;
 
@@ -10,10 +11,13 @@ public class PersonController : ControllerBase
 {
     private readonly IPersonService _personService;
     private readonly ILogger<PersonController> _logger;
+    private readonly PersonConverter _converter;
+
     public PersonController(IPersonService personService, ILogger<PersonController> logger)
     {
         _personService = personService;
         _logger = logger;
+        _converter = new PersonConverter();
     }
 
     [HttpGet]
@@ -59,24 +63,28 @@ public class PersonController : ControllerBase
 
         _logger.LogInformation("Criando nova pessoa: {@person}", person);
 
-        var createdPerson = _personService.Create(person);
-        _logger.LogInformation("Nova pessoa: {@person} criada com sucesso!", person);
+        var personDto = _converter.Parse(person);
+        var createdPerson = _personService.Create(personDto);
+        _logger.LogInformation("Nova pessoa: {@person} criada com sucesso!", createdPerson);
 
         return CreatedAtAction(nameof(GetById), new { id = createdPerson.Id }, createdPerson);
     }
 
     [HttpPut]
-     public IActionResult Put([FromBody] Person person)
+    public IActionResult Put([FromBody] Person person)
     {
-        _logger.LogInformation("Atualizando dados da pessoa: {@person}", person);
-        var updatePerson = _personService.Update(person);
         if (person == null)
         {
+            _logger.LogWarning("Tentativa de atualizar pessoa com dados nulos");
             return BadRequest();
         }
-        _logger.LogInformation("dados da pessoa: {person} atualizados com sucesso!", person);
 
-        return Ok();
+        _logger.LogInformation("Atualizando dados da pessoa: {@person}", person);
+        var personDto = _converter.Parse(person);
+        var updatePerson = _personService.Update(personDto);
+        _logger.LogInformation("dados da pessoa: {@person} atualizados com sucesso!", updatePerson);
+
+        return Ok(updatePerson);
     }
 
      [HttpDelete("{id}")]

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RestWithASPNET9Jorge.Data.DTO;
 using RestWithASPNET9Jorge.Interfaces;
 using RestWithASPNET9Jorge.Model;
 using RestWithASPNET9Jorge.Services;
@@ -47,7 +48,7 @@ public class BookController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Post([FromBody] Book book)
+    public IActionResult Post([FromBody] BookDTO book)
     {
         if (!ModelState.IsValid)
         {
@@ -59,11 +60,11 @@ public class BookController : ControllerBase
         var createdBook = _bookService.Create(book);
         _logger.LogInformation("Livro criado com sucesso: {@createdBook}", createdBook);
 
-        return CreatedAtAction(nameof(GetById), new { id = createdBook.Id }, createdBook);
+        return Ok(createdBook);
     }
 
     [HttpPut]
-    public IActionResult Put([FromBody] Book book)
+    public IActionResult Put([FromBody] BookDTO book)
     {
         if (!ModelState.IsValid)
         {

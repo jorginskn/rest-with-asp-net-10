@@ -1,12 +1,13 @@
-﻿using RestWithASPNET9Jorge.Model;
+﻿using RestWithASPNET9Jorge.Data.DTO;
+using RestWithASPNET9Jorge.Model;
 
 namespace RestWithASPNET9Jorge.Interfaces;
 
 public interface IBookService
 {
-    Book Create(Book person);
-    Book FindById(long id);
-    List<Book> FindAll();
-    Book Update(Book person);
-    Book Delete(long id);
+    BookDTO Create(BookDTO person);
+    BookDTO FindById(long id);
+    List<BookDTO> FindAll();
+    BookDTO Update(BookDTO person);
+    BookDTO Delete(long id);
 }

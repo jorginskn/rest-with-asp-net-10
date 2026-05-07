@@ -1,4 +1,6 @@
-﻿using RestWithASPNET9Jorge.Interfaces;
+﻿using Mapster;
+using RestWithASPNET9Jorge.Data.DTO;
+using RestWithASPNET9Jorge.Interfaces;
 using RestWithASPNET9Jorge.Model;
 using RestWithASPNET9Jorge.Repositories;
 
@@ -13,29 +15,34 @@ public class BookService : IBookService
         _repository = repository;
     }
 
-    public List<Book> FindAll()
+    public List<BookDTO> FindAll()
     {
-        return _repository.FindAll();
+        return _repository.FindAll().Adapt<List<BookDTO>>();
     }
 
-    public Book FindById(long id)
+    public BookDTO FindById(long id)
     {
-        return _repository.FindById(id);
+        return _repository.FindById(id).Adapt<BookDTO>();
     }
-    public Book Create(Book book)
+    public BookDTO Create(BookDTO book)
     {
-        return _repository.Create(book);
-    }
-
-    public Book Delete(long id)
-    {
-        return _repository.Delete(id);
+        var entity = book.Adapt<Book>();
+        entity = _repository.Create(entity);
+        return entity.Adapt<BookDTO>();
     }
 
-
-
-    public Book Update(Book book)
+    public BookDTO Delete(long id)
     {
-        return _repository.Update(book);
+
+        return _repository.Delete(id).Adapt<BookDTO>();
+    }
+
+
+
+    public BookDTO Update(BookDTO book)
+    {
+        var entity = book.Adapt<Book>();
+        entity = _repository.Update(entity);
+        return entity.Adapt<BookDTO>();
     }
 }

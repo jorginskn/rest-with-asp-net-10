@@ -1,4 +1,4 @@
-﻿namespace RestWithASPNET9Jorge.Data.DTO;
+﻿namespace RestWithASPNET9Jorge.Data.DTO.V1;
 
 public class BookDTO
 {

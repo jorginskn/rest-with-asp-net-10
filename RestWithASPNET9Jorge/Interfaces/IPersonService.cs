@@ -1,4 +1,4 @@
-﻿using RestWithASPNET9Jorge.Data.DTO;
+﻿using RestWithASPNET9Jorge.Data.DTO.V1;
 
 namespace RestWithASPNET9Jorge.Interfaces;
 

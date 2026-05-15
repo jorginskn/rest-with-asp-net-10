@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RestWithASPNET9Jorge.Data.DTO;
+using RestWithASPNET9Jorge.Data.DTO.V1;
 using RestWithASPNET9Jorge.Interfaces;
 using RestWithASPNET9Jorge.Model;
 using RestWithASPNET9Jorge.Services;
 using System;
 
 namespace RestWithASPNET9Jorge.Controllers;
-[Route("api/[controller]")]
+[Route("api/[controller]/v1")]
 [ApiController]
 public class BookController : ControllerBase
 {

@@ -1,5 +1,5 @@
 ﻿using RestWithASPNET9Jorge.Data.Converter.Contract;
-using RestWithASPNET9Jorge.Data.DTO;
+using RestWithASPNET9Jorge.Data.DTO.V1;
 using RestWithASPNET9Jorge.Interfaces;
 using RestWithASPNET9Jorge.Model;
 using RestWithASPNET9Jorge.Repositories;

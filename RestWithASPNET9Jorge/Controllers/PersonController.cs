@@ -5,7 +5,7 @@ using RestWithASPNET9Jorge.Data.Converter.Contract;
 
 namespace RestWithASPNET9Jorge.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/[controller]/v1")]
 [ApiController]
 public class PersonController : ControllerBase
 {

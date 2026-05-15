@@ -1,5 +1,5 @@
 ﻿using Mapster;
-using RestWithASPNET9Jorge.Data.DTO;
+using RestWithASPNET9Jorge.Data.DTO.V1;
 using RestWithASPNET9Jorge.Interfaces;
 using RestWithASPNET9Jorge.Model;
 using RestWithASPNET9Jorge.Repositories;

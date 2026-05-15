@@ -27,4 +27,7 @@ public class Person : BaseEntity
     [MaxLength(100, ErrorMessage = "O endereço deve conter no máximo 100 caracteres")]
     public string Address { get;   set; }
 
+    //[NotMapped]
+    //[Column("birth_day", TypeName = "datetime")]
+    //public DateTime? BirthDay { get; set; }
 }
